@@ -1,0 +1,14 @@
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		// password encoder is need to specify
+		PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+		
+		auth.inMemoryAuthentication()
+			.withUser("makarand")
+			.password(encoder.encode("makarand"))
+			.authorities("ROLE_USER")
+			.and()
+			.withUser("admin")
+			.password(encoder.encode("admin1234"))
+			.authorities("ROLE_USER");
+	}
