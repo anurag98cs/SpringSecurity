@@ -1,0 +1,30 @@
+Step1: Create empty folder at any location
+Step2: Create Dockerfile (no extension) in the same folder
+Step3: Add following content to the file
+		FROM tomcat:9
+		copy SampleWebProject.war /usr/local/tomcat/webapps/
+Step4: Open docker in the same folder (open start.sh)
+Step5: docker build -t myproject .
+Step6: docker run -d -p 9090:8080 myproject
+
+docker run -d -p 9092:8080 tomcat:9
+docker stop container_id
+docker ps
+docker logs container_id
+docker-machine ls
+
+for pushing
+Step1: docker login -u username -p password
+Step2: docker tag myproject bhoirmakarand/myproject
+Step3: docker push bhoirmakarand/myproject
+
+with mysql
+Step1: download mysql from registry: docker pull mysql
+Step2: docker run the mysql and provide name: docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=pwd -e MYSQL_DATABASE=test -e MYSQL_USER=sa -e MYSQL_PASSWORD=pwd -d mysql:latest
+Step3: create a empty folder with war file and dockerfile
+Step4: docker build -t myproject2 .
+Step5: run the image: docker run -p 8888:8080 --name employees-mysql --link mysql-container:mysql -d myproject2
+
+open the browser: http://192.168.99.100:8888
+
+
